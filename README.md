@@ -21,9 +21,13 @@ D space-separated integerss which represent the coordinates of the current data 
 input with four two-dimensional data points would be stored in a file as: 
 
 4 2
+
 1 1
+
 1 2
+
 3 4
+
 3 2
 
 The input file with class labels contains N+1 lines. The first line contains the number of data points (N). The
@@ -31,39 +35,66 @@ following N lines each contains one integer each, the class label of each data-p
 with four data points would be stored in a file as: 
 
 4
+
 1
+
 -1
+
 1
+
 -1
 
 The project utilizes a  high-precision,monotonic, wall-clock timer to record and present the execution time. The time spent on reading and loading file will be omitted.
 The following shows the details of time recording techniques:
 
 /* Gives us high-resolution timers. */
+
 #define _POSIX_C_SOURCE 199309L
+
 #include <time.h>
+
 /**
+
 * @brief Return the number of seconds since an unspecified time (e.g., Unix
+
 * epoch). This is accomplished with a high-resolution monotonic timer,
+
 * suitable for performance timing.
+
 *
+
 * @return The number of seconds.
+
 */
+
 static inline double monotonic_seconds()
+
 {
+
  struct timespec ts;
+ 
  clock_gettime(CLOCK_MONOTONIC, &ts);
+ 
  return ts.tv_sec + ts.tv_nsec * 1e-9;
+ 
  }
  
  /**
+
 * @brief Output the seconds elapsed while execution.
+
 *
+
 * @param seconds Seconds spent on execution, excluding IO.
+
 */
+
 static void print_time(double const seconds)
+
 {
+
  printf("Execution time: %0.04fs\n", seconds);
+
 }
 
 Function Call
